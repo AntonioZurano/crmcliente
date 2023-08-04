@@ -26,6 +26,18 @@ const NuevaCuenta = () => {
                 .required('El password no puede ir vacío')
                 .min(6, 'El password debe ser de al menos 6 caracteres')
         }),
+        validationSchema: Yup.object({
+            nombre: Yup.string()
+                .required('El nombre es obligatorio'),
+            apellido: Yup.string()
+                .required('El apellido es obligatorio'),
+            email: Yup.string()
+                .email('El email no es válido')  // Validación de email con Yup
+                .required('El email es obligatorio'),
+            password: Yup.string()
+                .required('El password no puede ir vacío')
+                .min(6, 'El password debe ser de al menos 6 caracteres')
+        }),
         onSubmit: valores => {
             console.log(valores);
         }
@@ -57,8 +69,15 @@ const NuevaCuenta = () => {
                                     placeholder="Nombre Usuario"
                                     value={formik.values.nombre}
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                 />
                             </div>
+                            { formik.touched.nombre && formik.errors.nombre ? (   // Si el campo ha sido tocado y hay error
+                                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                                    <p className="font-bold">Error</p>
+                                    <p>{formik.errors.nombre}</p>
+                                </div>
+                            ) : null    }
                             <div className="mb-4">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -72,7 +91,13 @@ const NuevaCuenta = () => {
                                     value={formik.values.apellido}
                                     onChange={formik.handleChange}
                                 />
-                            </div>                            
+                            </div>                  
+                            { formik.touched.apellido && formik.errors.apellido ? (   // Si el campo ha sido tocado y hay error 
+                                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                                    <p className="font-bold">Error</p>
+                                    <p>{formik.errors.apellido}</p>
+                                </div>
+                            ) : null    }
                             <div className="mb-4">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
@@ -101,6 +126,12 @@ const NuevaCuenta = () => {
                                     onChange={formik.handleChange}
                                 />
                             </div>
+                            { formik.touched.password && formik.errors.password ? (   // Si el campo ha sido tocado y hay error
+                                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
+                                    <p className="font-bold">Error</p>
+                                    <p>{formik.errors.password}</p>
+                                </div>
+                            ) : null    }
                             <input
                                 type="submit"
                                 className="bg-gray-800 w-full mt-5 p-2 text-white hover:bg-gray-900"
