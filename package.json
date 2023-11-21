@@ -14,10 +14,14 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "formik": "^2.4.3",
+    "graphql": "^16.7.1",
     "next": "13.4.12",
     "node-fetch": "^3.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "webpack-node-externals": "^3.0.0"
   }
 }
